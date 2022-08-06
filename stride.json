@@ -6,8 +6,8 @@
     "rpc-addr": "34.105.55.182:16657",
     "account-prefix": "stride",
     "keyring-backend": "test",
-    "gas-adjustment": 1.5,
-    "gas-prices": "0.001ustrd",
+    "gas-adjustment": 1.3,
+    "gas-prices": "0.01ustrd",
     "debug": true,
     "timeout": "10s",
     "sign-mode": "direct"
