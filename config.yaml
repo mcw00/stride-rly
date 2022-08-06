@@ -1,0 +1,72 @@
+global:
+    api-listen-addr: :5183
+    timeout: 10s
+    memo: $MEMO
+    light-cache-size: 20
+chains:
+    SEI:
+        type: cosmos
+        value:
+            key: $seikey
+            chain-id: atlantic-1
+            rpc-addr: http://$IPSEI:$PORTSEI
+            account-prefix: sei
+            keyring-backend: test
+            gas-adjustment: 1.3
+            gas-prices: 0.01usei
+            debug: false
+            timeout: 10s
+            output-format: json
+            sign-mode: sync
+            strategy:
+            type: native
+            version: ics20-1
+            order: UNORDERED
+    stride:
+        type: cosmos
+        value:
+            key: $strdkey
+            chain-id: STRIDE-TESTNET-2
+            rpc-addr: http://127.0.0.1$PORTR
+            account-prefix: stride
+            keyring-backend: test
+            gas-adjustment: 1.3
+            gas-prices: 0.01ustrd
+            debug: false
+            timeout: 20s
+            output-format: json
+            sign-mode: sync
+            strategy:
+            type: native
+            version: ics20-1
+            order: UNORDERED
+paths:
+    SEI-stride:
+        src:
+            chain-id: STRIDE-TESTNET-2
+            client-id: 07-tendermint-0
+            connection-id: connection-0
+            port-id: icacontroller-SEI.DELEGATION,transfer,icacontriiler-SEI.FEE,icacontroller-SEI.WITHDRAWAL,icacontroller-SEI.REDEMPTION
+  
+        dst:
+            chain-id: atlantic-1
+            client-id: 07-tendermint-0
+            connection-id: connection-0
+            port-id: icahost,icacontroller-SEI.DELEGATION,transfer,icacontriiler-SEI.FEE,icacontroller-SEI.WITHDRAWAL,icacontroller-SEI.REDEMPTION
+        src-channel-filter:
+            rule: allowlist
+            channel-list:
+                - channel-0 
+                - channel-1 
+                - channel-2 
+                - channel-3 
+                - channel-4 
+        dst-channel-filter:
+            rule: allowlist
+            channel-list:
+                - channel-0 
+                - channel-1 
+                - channel-2 
+                - channel-3 
+                - channel-4
+EOF
